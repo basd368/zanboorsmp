@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="فا">
+<head>
+  <meta charset="UTF-8" />
+  <title>فروشگاه - ZanboorSMP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      direction: rtl;
+    }
+    body {
+      margin: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      background: url('minecraft_background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      padding: 3rem 1rem;
+      box-shadow: 0 4px 20px #000;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      color: #ffe600;
+      margin: 0;
+      text-shadow: 2px 2px 5px #000;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.75);
+    }
+    nav a {
+      padding: 0.9rem 1.7rem;
+      background-color: #ffde03;
+      color: #222;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: 0.3s ease-in-out;
+    }
+    nav a:hover {
+      background-color: #fff600;
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #fff600aa;
+    }
+    .shop-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .shop-card {
+      background-color: rgba(0, 0, 0, 0.65);
+      border-radius: 1rem;
+      padding: 1rem;
+      width: 260px;
+      text-align: center;
+      box-shadow: 0 0 15px #000000aa;
+      transition: transform 0.3s ease;
+    }
+    .shop-card:hover {
+      transform: scale(1.05);
+    }
+    .shop-card img {
+      width: 100%;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      height: 150px;
+    }
+    .shop-card h3 {
+      color: #ffeb3b;
+      margin: 1rem 0 0.5rem;
+    }
+    .shop-card p {
+      color: #ddd;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+      min-height: 54px;
+    }
+    .shop-card button {
+      background-color: #ffde03;
+      border: none;
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      font-size: 1rem;
+    }
+    .shop-card button:hover {
+      background-color: #fff600;
+      box-shadow: 0 0 10px #fff600aa;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #ddd;
+      background-color: rgba(0, 0, 0, 0.75);
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+    /* استایل دکمه ثبت‌نام - گوشه بالا سمت چپ */
+    #signup-btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #ffde03;
+      color: #222;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: 0.3s ease-in-out;
+      z-index: 1000;
+      transform: none;
+    }
+    #signup-btn:hover {
+      background-color: #fff600;
+      box-shadow: 0 0 15px #fff600aa;
+      transform: scale(1.05);
+    }
+    /* پاپ‌آپ ثبت‌نام */
+    #signup-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0,0,0,0.85);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 350px;
+      width: 90%;
+      box-shadow: 0 0 25px #000000cc;
+      z-index: 1100;
+    }
+    #signup-popup h3 {
+      color: #ffeb3b;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 1px 1px 4px #000;
+    }
+    #signup-popup input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1rem;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+    #signup-popup button {
+      width: 100%;
+      background-color: #ffde03;
+      border: none;
+      color: #000;
+      padding: 0.7rem 0;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.3s ease-in-out;
+    }
+    #signup-popup button:hover {
+      background-color: #fff600;
+      box-shadow: 0 0 15px #fff600aa;
+    }
+    #signup-popup #error {
+      margin-top: 0.5rem;
+      min-height: 1.2rem;
+      text-align: center;
+      color: #f33;
+    }
+    #signup-popup span {
+      display: block;
+      margin-top: 1rem;
+      text-align: center;
+      cursor: pointer;
+      color: #aaa;
+      user-select: none;
+    }
+    #signup-popup span:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>فروشگاه ZanboorSMP 🐝</h1>
+  </header>
+  <nav>
+    <a href="index.html">خانه</a>
+    <a href="rules.html">قوانین</a>
+    <a href="payment.html">پرداخت</a>
+    <a href="season1.html">سیزن یک</a>
+  </nav>
+
+  <div class="shop-container">
+    <div class="shop-card">
+      <img src="vip.jpg" alt="VIP" />
+      <h3>رنک VIP</h3>
+      <p>قابلیت چند کامند اضافه و کیت اختصاصی برای 1 ماه</p>
+      <button onclick="location.href='payment.html'">خرید 20,000 تومان</button>
+    </div>
+    <div class="shop-card">
+      <img src="sponsor.jpg" alt="Sponsor" />
+      <h3>رنک SPONSOR</h3>
+      <p>قابلیت چند کامند اضافه و کیت اختصاصی برای 2 ماه</p>
+      <button onclick="location.href='payment.html'">خرید 105,000 تومان</button>
+    </div>
+    <div class="shop-card">
+      <img src="zanboor.jpg" alt="ZANBOOR" />
+      <h3>رنک ZANBOOOR</h3>
+      <p>قابلیت چند کامند اضافه و کیت اختصاصی برای 1 ماه</p>
+      <button onclick="location.href='payment.html'">خرید 39,000 تومان</button>
+    </div>
+  </div>
+
+  <footer>تمامی حقوق برای ZanboorSMP محفوظ است ©</footer>
+
+  <!-- دکمه ثبت‌نام -->
+  <div id="signup-btn" onclick="openSignupForm()">ثبت‌نام</div>
+
+  <!-- فرم ثبت‌نام -->
+  <div id="signup-popup">
+    <form id="signupForm" onsubmit="return redirectToPayment(event)">
+      <h3>فرم ثبت‌نام</h3>
+      <input type="text" id="name" placeholder="نام شما" required />
+      <input type="text" id="contact" placeholder="ایمیل یا شماره" required />
+      <input type="text" id="ign" placeholder="نام در بازی" required />
+      <button type="submit">پرداخت و ثبت‌نام</button>
+      <p id="error"></p>
+      <span onclick="closeSignupForm()">✖ بستن</span>
+    </form>
+  </div>
+
+  <script>
+    function openSignupForm() {
+      document.getElementById("signup-popup").style.display = "block";
+    }
+
+    function closeSignupForm() {
+      document.getElementById("signup-popup").style.display = "none";
+      document.getElementById("error").textContent = '';
+      document.getElementById("signupForm").reset();
+    }
+
+    function redirectToPayment(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      const ign = document.getElementById("ign").value.trim();
+      const error = document.getElementById("error");
+
+      if (!name || !contact || !ign) {
+        error.textContent = "لطفاً همه‌ی فیلدها را کامل کنید.";
+        return false;
+      }
+
+      // اینجا لینک درگاه پرداخت را جایگزین کنید
+      const paymentLink = "payment.html";
+
+      // می‌توانید داده‌های فرم را به سرور ارسال کنید یا به صفحه پرداخت بروید
+      window.location.href = paymentLink;
+
+      return true;
+    }
+  </script>
+</body>
+</html>
